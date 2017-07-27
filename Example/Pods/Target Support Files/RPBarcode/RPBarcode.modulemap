@@ -1,0 +1,6 @@
+framework module RPBarcode {
+  umbrella header "RPBarcode-umbrella.h"
+
+  export *
+  module * { export * }
+}

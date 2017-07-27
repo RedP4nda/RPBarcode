@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  ImageLoader.swift
 //
 // Copyright (c) 2017 Florian PETIT <florianp37@me.com>
 //
@@ -22,22 +22,37 @@
 // THE SOFTWARE.
 //
 
-import UIKit
-import RPBarcode
+import Foundation
+import CoreImage
 
-class ViewController: UIViewController {
-
-    @IBOutlet weak var barcodeImageView: UIImageView!
-
-    
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        if let generatedImage = RPBarcode.generate(from: "3760037693503", type: .Code128) {
-            barcodeImageView.image = generatedImage
-        }
-        
-    }
+public enum CodeGeneratorType : String {
+    case Aztec      = "CIAztecCodeGenerator"
+    case Code128    = "CICode128BarcodeGenerator"
+    case CodePDF417 = "CIPDF417BarcodeGenerator"
+    case QRCode     = "CIQRCodeGenerator"
 }
 
+open class RPBarcode {
+    
+    /**
+     Creates an UIImage from a data string
+     - parameter string:        the string used to generate the code
+     - parameter type:          the type of code to be generated
+     - returns an UIImage
+     */
+    open class func generate(from string: String, type: CodeGeneratorType) -> UIImage? {
+        
+        guard let filter = CIFilter(name: type.rawValue) else {
+            return nil
+        }
+        
+        let data = string.data(using: String.Encoding.ascii)
+        filter.setValue(data, forKey: "inputMessage")
+
+        guard let ciImage = filter.outputImage else {
+            return nil
+        }
+        
+        return UIImage(ciImage: ciImage)
+    }
+}

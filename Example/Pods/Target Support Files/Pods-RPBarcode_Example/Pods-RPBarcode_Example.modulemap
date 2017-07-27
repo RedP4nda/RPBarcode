@@ -1,0 +1,6 @@
+framework module Pods_RPBarcode_Example {
+  umbrella header "Pods-RPBarcode_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}
