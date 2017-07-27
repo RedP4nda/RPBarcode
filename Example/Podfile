@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'RPBarcode_Example' do
+  pod 'RPBarcode', :path => '../'
+
+  target 'RPBarcode_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
