@@ -1,0 +1,16 @@
+PODS:
+  - RPBarcode (0.1.0)
+
+DEPENDENCIES:
+  - RPBarcode (from `../`)
+
+EXTERNAL SOURCES:
+  RPBarcode:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  RPBarcode: 92d07b3da66743c25c8a40cf8ba95cf611e4ccef
+
+PODFILE CHECKSUM: 8b18292dd1d156efa374a3516413c5bcf6d072c5
+
+COCOAPODS: 1.2.0
